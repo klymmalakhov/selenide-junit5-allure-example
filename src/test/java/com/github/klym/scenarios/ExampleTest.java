@@ -19,18 +19,27 @@ public class ExampleTest extends BaseTest {
 
     @Test
     @Order(1)
-    @Story("Portal UI")
-    @Description("Check the accesshq Page")
+    @Story("Portal Pizza")
+    @Description("Validate the errors appearing")
     void mainTest() {
-        this.accesshqPage.verifyWelcomeMessage("Welcome to the home of Human Quality for Enterprise Technology");
+        this.contactPage = this.homePizzaPage.clickContactMenuItem();
+        this.contactPage.clickOnSubmitButton();
+        this.contactPage.validateEmailError("Email is required");
+        this.contactPage.validateForenameError("Forename is required");
+        this.contactPage.validateMessageError("Message is required");
+        this.contactPage.fillForename("Dan").validateForenameErrorEmpty();
+        this.contactPage.fillEmail("dan@abc.com").validateForenameErrorEmpty();
+        this.contactPage.fillMessage("Nice Pizza").validateMessageErrorEmpty();
     }
 
     @Test
     @Order(2)
-    @Story("Portal UI")
-    @Description("Tack with us Page validation")
-    void TackWithUsTest() {
-        this.talkWithUsPage = this.accesshqPage.clickTalkWithUsButton();
-        this.talkWithUsPage.verifyPhoneNumber("Free Call: 1800 999 585");
+    @Story("Portal Pizza")
+    @Description("Validate the Chunky Chips and Aioli pizza")
+    void validatePizzaItem() {
+        this.menuPage = this.homePizzaPage.clickMenuMenuItem();
+        this.menuPage.clickSideTabItem();
+        this.menuPage.validatePizzaPrice("$9.99");
+        this.menuPage.validatePizzaKilojoules("3273 kJ");
     }
 }

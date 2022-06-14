@@ -3,26 +3,23 @@ package com.github.klym.pages;
 import com.codeborne.selenide.Selenide;
 import com.github.klym.common.BasePage;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 /**
- * Accesshq Page class
+ * HomePizza Page class
  */
 
-public class BasePizzaPage extends BasePage<BasePizzaPage> {
-
-
+public class HomePizzaPage extends BasePage<HomePizzaPage> {
     @Step("Click on the Contact menu item")
-    public BasePizzaPage clickContactMenuItem() {
+    public ContactPage clickContactMenuItem() {
         $("a.v-btn--text:nth-child(4)").click();
         return Selenide.page(ContactPage.class);
     }
-
     @Step("Click on the Menu menu item")
-    public TalkWithUsPage clickMenuMenuItem() {
-        $(".v-btn--active").click();
-        return Selenide.page(TalkWithUsPage.class);
+    public MenuPage clickMenuMenuItem() {
+        $(By.xpath("//*[contains(@href, 'menu') and contains(@class,'v-btn v-btn--router v-btn--text theme--light v-size--default') ]")).click();
+        return Selenide.page(MenuPage.class);
     }
 }

@@ -4,8 +4,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.automatedowl.tools.AllureEnvironmentWriter;
-import com.github.klym.pages.AccesshqPage;
-import com.github.klym.pages.TalkWithUsPage;
+import com.github.klym.pages.*;
 import com.google.common.collect.ImmutableMap;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterAll;
@@ -31,8 +30,11 @@ public abstract class BaseTest {
     private final static Logger logger = LoggerFactory.getLogger(lookup().lookupClass());
     private final static String selenideProperties = "selenide.properties";
 
-    protected AccesshqPage accesshqPage;
-    protected TalkWithUsPage talkWithUsPage;
+    protected MenuPage menuPage;
+
+    protected ContactPage contactPage;
+
+    protected HomePizzaPage homePizzaPage;
 
     @BeforeAll
     static void setupClass() throws IOException {
@@ -96,7 +98,7 @@ public abstract class BaseTest {
 
     @BeforeEach
     protected void setupTest() {
-        this.accesshqPage = Selenide.open("", AccesshqPage.class);
+        this.homePizzaPage = Selenide.open("", HomePizzaPage.class);
     }
 
     @AfterEach
